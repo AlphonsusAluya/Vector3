@@ -1,6 +1,6 @@
   /// <summary>
 /// Vector 3 class
-/// your name here or no marks
+/// Alphonsus Aluya
 /// </summary>
 #include "MyVector3.h"
 #include <string.h>
