@@ -35,6 +35,13 @@ std::string MyVector3::toString()
 	return output;	
 }
 
+MyVector3::MyVector3(double t_x, double t_y, double t_z)
+{
+	x = t_x;
+	y = t_y;
+	z = t_z;
+}
+
 /// <summary>
 /// create a vector 3 from an sf::vector3f
 /// </summary>
@@ -49,4 +56,41 @@ MyVector3::MyVector3(sf::Vector3f t_sfVector)
 MyVector3::operator sf::Vector2u()
 {
 	return sf::Vector2u{};
+}
+
+
+MyVector3 MyVector3::operator+(const MyVector3 t_right) const
+{
+	sf::Vector3f vectorOne{};
+	vectorOne.x = x + t_right.x;
+	vectorOne.y = y + t_right.y;
+	vectorOne.z = z + t_right.z;
+	return vectorOne;
+}
+
+MyVector3 MyVector3::operator-(const MyVector3 t_right) const
+{
+	sf::Vector3f vectorOne{};
+	vectorOne.x = x - t_right.x;
+	vectorOne.y = y - t_right.y;
+	vectorOne.z = z - t_right.z;
+	return vectorOne;
+}
+
+MyVector3 MyVector3::operator*(const double t_scalar) const
+{
+	sf::Vector3f vectorOne{};
+	vectorOne.x = x * t_scalar;
+	vectorOne.y = y * t_scalar;
+	vectorOne.z = z * t_scalar;
+	return vectorOne;
+}
+
+MyVector3 MyVector3::operator/(const double t_divisor) const
+{
+	sf::Vector3f vectorOne{};
+	vectorOne.x = x / t_divisor;
+	vectorOne.y = y / t_divisor;
+	vectorOne.z = z / t_divisor;
+	return vectorOne;
 }
