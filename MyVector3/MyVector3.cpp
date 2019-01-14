@@ -1,6 +1,6 @@
   /// <summary>
 /// Vector 3 class
-/// Alphonsus Aluy
+/// Alphonsus Aluya,
 /// </summary>
 #include "MyVector3.h"
 #include <string.h>
@@ -53,6 +53,12 @@ MyVector3::MyVector3(sf::Vector3f t_sfVector)
 	z = static_cast<double>(t_sfVector.z);
 }
 
+MyVector3::MyVector3(sf::Vector2i t_sfVector)
+{
+	x = static_cast<int>(t_sfVector.x);
+	y = static_cast<int>(t_sfVector.y);
+}
+
 MyVector3::operator sf::Vector2u()
 {
 	return sf::Vector2u{};
@@ -94,3 +100,43 @@ MyVector3 MyVector3::operator/(const double t_divisor) const
 	vectorOne.z = z / t_divisor;
 	return vectorOne;
 }
+
+MyVector3 MyVector3::operator+=(const MyVector3 t_right)
+{
+	
+	return MyVector3(x += t_right.x, y += t_right.y, z += t_right.z);
+	
+}
+
+MyVector3 MyVector3::operator-=(const MyVector3 t_right)
+{
+	
+	return MyVector3(x -= t_right.x, y -= t_right.y, z -= t_right.z);
+}
+
+bool MyVector3::operator==(const MyVector3 t_right) const
+{
+	sf::Vector3f vectorOne{};
+	if (vectorOne.x == t_right.x && vectorOne.y == t_right.y && vectorOne.z == t_right.z)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool MyVector3::operator!=(const MyVector3 t_right) const
+{
+	sf::Vector3f vectorOne{};
+	if (vectorOne.x == t_right.x || vectorOne.y == t_right.y || vectorOne.z == t_right.z)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
