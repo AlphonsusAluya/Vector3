@@ -53,10 +53,31 @@ MyVector3::MyVector3(sf::Vector3f t_sfVector)
 	z = static_cast<double>(t_sfVector.z);
 }
 
+MyVector3::MyVector3(sf::Vector3i t_sfVector)
+{
+	x = static_cast<double>(t_sfVector.x);
+	y = static_cast<double>(t_sfVector.y);
+	z = static_cast<double>(t_sfVector.z);
+}
+
 MyVector3::MyVector3(sf::Vector2i t_sfVector)
 {
 	x = static_cast<int>(t_sfVector.x);
 	y = static_cast<int>(t_sfVector.y);
+}
+
+MyVector3::MyVector3(sf::Vector2u t_sfVector)
+{
+	x = static_cast<int>(t_sfVector.x);
+	y = static_cast<int>(t_sfVector.y);
+	z = 0;
+}
+
+MyVector3::MyVector3(sf::Vector2f t_sfVector)
+{
+	x = static_cast<int>(t_sfVector.x);
+	y = static_cast<int>(t_sfVector.y);
+	z = 0;
 }
 
 MyVector3::operator sf::Vector2u()
@@ -138,5 +159,23 @@ bool MyVector3::operator!=(const MyVector3 t_right) const
 	{
 		return false;
 	}
+}
+
+MyVector3 MyVector3::operator-()
+{
+	return MyVector3();
+}
+
+void MyVector3::reverseX()
+{
+}
+
+void MyVector3::reverseY()
+{
+}
+
+double MyVector3::length() const
+{
+	return 0.0;
 }
 
