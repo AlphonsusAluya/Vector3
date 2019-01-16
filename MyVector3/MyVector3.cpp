@@ -163,19 +163,94 @@ bool MyVector3::operator!=(const MyVector3 t_right) const
 
 MyVector3 MyVector3::operator-()
 {
+	MyVector3 x = -x, y = -y, z = -z;
 	return MyVector3();
 }
 
 void MyVector3::reverseX()
 {
+	x = x * -1;
 }
 
 void MyVector3::reverseY()
 {
+	y = y * -1;
 }
 
 double MyVector3::length() const
 {
-	return 0.0;
+	float sumOfSquares = (x * x) + (y * y) + (z * z);
+	const float length = sqrt(sumOfSquares);
+	return length;
+}
+
+double MyVector3::lengthSquared() const
+{
+	float original = length();
+	float lengthSquared = original * original;
+	return lengthSquared;
+}
+
+double MyVector3::dot(const MyVector3 t_other) const
+{
+	const float dotProduct = (x * t_other.x) * (y * t_other.y) * (z * t_other.z);
+	return dotProduct;
+}
+
+MyVector3 MyVector3::crossProduct(const MyVector3 t_other) const
+{
+	const float resultOne = y * t_other.z - z * t_other.y;
+	const float resultTwo = x * t_other.y - y * t_other.x;
+	const float resultThree = z * t_other.x - x * t_other.y;
+	return MyVector3(resultOne, resultTwo, resultThree);
+}
+
+double MyVector3::angleBetween(const MyVector3 t_other) const
+{
+	MyVector3 vectorOne = { x, y, z };
+	float getTheDot = vectorOne.dot(t_other);
+	float angleAcos = cos(getTheDot);
+	float angle = angleAcos / vectorOne.length() * t_other.length();
+	float radians = angle * 180 / PI;
+	return radians;
+}
+
+MyVector3 MyVector3::unit() const
+{
+	MyVector3 results{ x, y, z };
+	float resultOne = 0.0f;
+	float resultTwo = 0.0f;
+	float resultThree = 0.0f;
+
+	float length = results.length();
+	if (length != 0.0f)
+	{
+		float resultOne = x / length;
+		float resultTwo = y / length;
+		float resultThree = z / length;
+	}
+	return MyVector3(resultOne, resultTwo, resultThree);
+}
+
+void MyVector3::normalise()
+{
+	MyVector3(x, y, z) = MyVector3(x, y, z) / MyVector3(x, y, z).length();
+}
+
+MyVector3 MyVector3::projection(const MyVector3 t_onto) const
+{
+	MyVector3 vecterOne = { x, y, z };
+	float scale = vecterOne.dot(t_onto) / (t_onto.length() * t_onto.length());
+	float projectionx = scale * t_onto.x;
+	float projectiony = scale * t_onto.y;
+	float projectionz = scale * t_onto.z;
+	return MyVector3(projectionx, projectiony, projectionz);
+}
+
+MyVector3 MyVector3::rejection(const MyVector3 t_onto) const
+{
+	MyVector3 vectorOne = { x, y, z };
+	MyVector3 rejection = t_onto - vectorOne.projection(t_onto);
+	return MyVector3(rejection);
 }
 
