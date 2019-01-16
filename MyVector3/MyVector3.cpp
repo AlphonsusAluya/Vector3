@@ -1,7 +1,7 @@
   /// <summary>
 /// Vector 3 class
 /// Alphonsus Aluya,
-/// </summary>
+///
 #include "MyVector3.h"
 #include <string.h>
 #define PI           3.14159265358979323846
